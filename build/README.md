@@ -2,6 +2,8 @@
 
 From the checkout directory just run `.\build`  to invoke an automated release build of the project.
 
+To change package version: edit the build.props file and change the version values.
+
 The outputs from the automated build will be written to the `artifacts\Release` folder.
 
 *   Build

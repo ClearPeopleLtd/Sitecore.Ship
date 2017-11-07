@@ -32,12 +32,12 @@
   <PropertyGroup>
 
     <!-- Provide defaults for build Environment variables - documented in build\readme.md -->
-    <MajorVersion Condition="$(MajorVersion) == ''">0</MajorVersion>
+    <MajorVersion Condition="$(MajorVersion) == ''">1</MajorVersion>
     <MinorVersion Condition="$(MinorVersion) == ''">0</MinorVersion>
-    <PatchVersion Condition="$(PatchVersion) == ''">0</PatchVersion>
+    <PatchVersion Condition="$(PatchVersion) == ''">1</PatchVersion>
     <Revision Condition="$(Revision) == ''">0000</Revision>
     <Revision Condition="$(SHA) == ''">0000000</Revision>
-    <PRERELEASE Condition="$(PRERELEASE) == ''">true</PRERELEASE>
+    <PRERELEASE Condition="$(PRERELEASE) == ''">false</PRERELEASE>
     
     <IsRunningOnTeamCity Condition="$(IsRunningOnTeamCity) == ''">false</IsRunningOnTeamCity>
     <Configuration Condition="$(Configuration) == ''">Release</Configuration>
@@ -51,7 +51,8 @@
     <FileVersion>$(MajorMinorPatch).0</FileVersion>
 
     <!--PackageVersion format example 4.10.3-r0022 -->
-    <PackageVersion>$(MajorMinorPatch)$(BuildNumber)</PackageVersion>
+		<!--<PackageVersion>$(MajorMinorPatch)$(BuildNumber)</PackageVersion>-->
+		<PackageVersion>$(MajorMinorPatch)</PackageVersion>
 
     <!-- ProductVersion format example 4 4.10.3-r0022-381ba93 -->
     <ProductVersion>$(MajorMinorPatch)$(BuildNumber)$(CommitSHA)</ProductVersion>
