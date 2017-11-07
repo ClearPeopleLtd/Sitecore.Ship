@@ -6,7 +6,7 @@ using Sitecore.Data;
 using Sitecore.Data.Managers;
 using Sitecore.Diagnostics;
 using Sitecore.Globalization;
-
+using Sitecore.Rules.Conditions;
 using Sitecore.Ship.Core.Contracts;
 using Sitecore.Ship.Core.Domain;
 
@@ -26,7 +26,7 @@ namespace Sitecore.Ship.Infrastructure
 				};
 		}
 
-		public void Run(ItemsToPublish itemsToPublish)
+		public void Run(ItemsToPublish itemsToPublish, bool deep, bool related)
 		{
 			if (itemsToPublish == null)
 			{
@@ -48,7 +48,7 @@ namespace Sitecore.Ship.Infrastructure
 					var item = master.GetItem(new ID(itemToPublish));
 					if (item != null)
 					{
-						Publishing.PublishManager.PublishItem(item, itemsToPublish.TargetDatabases.Select(Sitecore.Configuration.Factory.GetDatabase).ToArray(), languages, true, true);
+						Publishing.PublishManager.PublishItem(item, itemsToPublish.TargetDatabases.Select(Sitecore.Configuration.Factory.GetDatabase).ToArray(), languages, deep, true, related);
 					}
 				}
 			}

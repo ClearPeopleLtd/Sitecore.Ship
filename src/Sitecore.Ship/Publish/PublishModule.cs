@@ -75,7 +75,7 @@ namespace Sitecore.Ship.Publish
             var now = DateTime.Now;
             var date = new DateTime(now.Year, now.Month, now.Day, now.Hour, now.Minute, now.Second);
 
-            _publishService.Run(itemsToPublish);
+            _publishService.Run(itemsToPublish, false, false);
 
             return Response.AsJson(date, HttpStatusCode.Accepted);
         }

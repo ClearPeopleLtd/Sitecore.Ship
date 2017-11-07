@@ -53,7 +53,7 @@ namespace Sitecore.Ship.AspNet.Publish
 							}
 							else
 							{
-								_publishService.Run(itemsToPublish);
+								_publishService.Run(itemsToPublish, publishParameters.Deep, publishParameters.Related);
 								var json = Json.Encode(new { date });
 
 								JsonResponse(json, HttpStatusCode.Accepted, context);
@@ -99,8 +99,10 @@ namespace Sitecore.Ship.AspNet.Publish
 					Mode = request.Url.PathAndQuery.Split(new[] {'/'}).Last(),
 					Source = request.Form["source"] ?? "master",
 					Targets = request.Form["targets"].CsvStringToStringArray(new[] { "web" }),
-					Languages = request.Form["languages"].CsvStringToStringArray(new[] { "en" })
-				};
+					Languages = request.Form["languages"].CsvStringToStringArray(new[] { "en" }),
+                    Deep = request.Form["deep"]=="1",
+                    Related = request.Form["related"]=="1"
+            };
 
 			return publishRequest;
 		}
