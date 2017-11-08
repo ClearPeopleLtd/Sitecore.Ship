@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Sitecore.Ship.Core.Contracts;
 
 namespace Sitecore.Ship.Infrastructure.IO
@@ -35,7 +36,11 @@ namespace Sitecore.Ship.Infrastructure.IO
 
         public void Dispose()
         {
-            File.Delete(_tempPackageFile);
+            if (string.IsNullOrEmpty(_tempPackageFile)) return;
+            try { 
+                File.Delete(_tempPackageFile);
+            }
+            catch(Exception){ }
         }
     }
 }
