@@ -15,6 +15,7 @@ using Sitecore.Update.Installer.Utils;
 using Sitecore.Update.Metadata;
 using Sitecore.Update.Utils;
 using Sitecore.Update.Wizard;
+using Sitecore.Ship.Infrastructure.Extensions;
 
 namespace Sitecore.Ship.Infrastructure.Update
 {
@@ -116,16 +117,24 @@ namespace Sitecore.Ship.Infrastructure.Update
         
         private PackageInstallationInfo GetInstallationInfo(string packagePath)
         {
+            if(string.IsNullOrEmpty(packagePath))
+            {
+                throw new Exception("Package is not selected");
+            }
+
             var info = new PackageInstallationInfo
             {
                 Mode = InstallMode.Install,
                 Action = UpgradeAction.Upgrade,
                 Path = packagePath
             };
-            if (string.IsNullOrEmpty(info.Path))
-            {
-                throw new Exception("Package is not selected.");
-            }
+
+            // this is what we need to do in Sitecore 8.2 Update 2
+            // info.ProcessingMode = ProcessingMode.All
+            // Unfortunately that code is not compilable in previous versions
+            // .SetProcessingMode() assigns that property using reflection
+            info.SetProcessingMode();
+
             return info;
         }
 

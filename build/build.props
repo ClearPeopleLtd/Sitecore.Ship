@@ -34,7 +34,7 @@
     <!-- Provide defaults for build Environment variables - documented in build\readme.md -->
     <MajorVersion Condition="$(MajorVersion) == ''">1</MajorVersion>
     <MinorVersion Condition="$(MinorVersion) == ''">0</MinorVersion>
-    <PatchVersion Condition="$(PatchVersion) == ''">2</PatchVersion>
+    <PatchVersion Condition="$(PatchVersion) == ''">3</PatchVersion>
     <Revision Condition="$(Revision) == ''">0000</Revision>
     <Revision Condition="$(SHA) == ''">0000000</Revision>
     <PRERELEASE Condition="$(PRERELEASE) == ''">false</PRERELEASE>
